@@ -7,75 +7,26 @@
 #include "stopwatch.h"
 #include "clock.h"
 #include "display_manager.h"
-
-
-
-unsigned lcd_timer = 0;
-const unsigned lcd_delay = 10;
-
-unsigned mode = HEURE;
+#include "event_manager.h"
 
 unsigned bouton_timer = 9;
 
-
-void update_timer()
-{
-  sw_tick();
-  clk_tick();
-}
-
-
 #pragma vector=TIMERA0_VECTOR
 __interrupt void TimerA0_ISR(void)
-{
-  bouton_timer++;
-  if(P1IN & 0xF)
-    bouton_timer = 0;
-  
-  update_timer();
-  lcd_timer++;
-  
-  //on ne veut reafficher la valeur sur
-  if(lcd_timer > lcd_delay)
-  {
-    lcd_timer = 0;
-    switch(mode)
-    {
-    case CHRONO:
-        LCD_print(sw_tostring());
-      break;
-    case HEURE:
-       LCD_print(clk_tostring());
-      break;
-    }
-  }
-  
-  P2OUT |= USB_isConnected();
+{ 
+  em_tick();    //event manager
+  sw_tick();    //stopwatch
+  clk_tick();   //clock
+  dm_tick();    //display manager
+ 
+ //P2OUT |= USB_isConnected();
   
 }
 
 #pragma vector=PORT1_VECTOR
  __interrupt void Port1_ISR(void)
 {
-  if(bouton_timer >= 9)
-  {
-    if(P1IFG & 0x1)
-    {
-      mode = HEURE;
-    }
-    else if(P1IFG & 0x2)
-    {
-      mode = CHRONO;
-    }
-    else if(P1IFG & 0x4) //pause du chrono
-    {
-      sw_toggle();
-    }
-    else if(P1IFG & 0x8) //ràz du chrono
-    {
-      sw_reset();
-    }
-  }
+  em_onPress();
   
   P1IFG = 0; //remise à zéro des flags
 }
