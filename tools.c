@@ -1,6 +1,6 @@
 #include "tools.h"
 
-static buffer[9] = 0;
+static char buffer[9] = {0};
 
 //returs the ascii code of single digit number
 unsigned char itoa(unsigned i)

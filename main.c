@@ -4,12 +4,11 @@
  #include "msp430fg4617.h"
 #include "USB.h"
 #include "tools.h"
+#include "stopwatch.h"
+#include "clock.h"
 
 #define CHRONO 0
 #define HEURE 1
-
-
-unsigned char buffer[9] = {0};
 
 unsigned var_cc = 0,var_cs = 0, var_cm = 0;
 unsigned var_hs=0,var_hm=0,var_hh=0,var_hc = 0;
