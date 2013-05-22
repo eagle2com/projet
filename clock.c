@@ -1,5 +1,6 @@
 #include "clock.h"
 #include "tools.h"
+#include "display_manager.h"
 
 static unsigned var_hs=0,var_hm=0,var_hh=0,var_hc = 0;
 
@@ -10,6 +11,7 @@ void clk_tick()
   {
     var_hc = 0;
     var_hs++;
+    dm_clkChanged();
   }
   if(var_hs >= 60)
   {

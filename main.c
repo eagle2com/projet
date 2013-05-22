@@ -6,9 +6,9 @@
 #include "tools.h"
 #include "stopwatch.h"
 #include "clock.h"
+#include "display_manager.h"
 
-#define CHRONO 0
-#define HEURE 1
+
 
 unsigned lcd_timer = 0;
 const unsigned lcd_delay = 10;
@@ -87,8 +87,6 @@ int main( void )
   P2DIR = 0xF;
   P2OUT = 0;
   
-  LCD_init();
-  
   P1IES = 0;
   P1IE = 0xF;
   P1IFG = 0;
@@ -98,7 +96,9 @@ int main( void )
   //on veut 100Hz vu que le compteur doit montrer les centièmes de seconde
   TACTL = TASSEL_1 + MC_1;  //on veut utiliser le quartz
   
-  P2OUT = 0; 	//on éteint les LEDs
+  dm_init();
+  
+  
   
   sw_reset();
   clk_synchronize(0,0,0,0); ///use the usb communication to synchronize it corretly lately

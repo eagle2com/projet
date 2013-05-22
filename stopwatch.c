@@ -1,5 +1,6 @@
 #include "stopwatch.h"
 #include "tools.h"
+#include "display_manager.h"
 
 static unsigned var_cc = 0, var_cs = 0, var_cm = 0, var_ch = 0;
 static unsigned char running = 0;
@@ -7,7 +8,10 @@ static unsigned char running = 0;
 void sw_tick()
 {
   if(running)
+  {
+    dm_swChanged();
     var_cc++;
+  }
   
   if(var_cc >= 100)
   {

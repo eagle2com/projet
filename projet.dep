@@ -2,7 +2,7 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>2440302530</fileChecksum>
+  <fileChecksum>2114013206</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
@@ -35,6 +35,10 @@
       <file>$PROJ_DIR$\Debug\Obj\stopwatch.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\stopwatch.r43</file>
       <file>$PROJ_DIR$\clock.h</file>
+      <file>$PROJ_DIR$\display_manager.c</file>
+      <file>$PROJ_DIR$\display_manager.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\display_manager.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\display_manager.r43</file>
       <file>$PROJ_DIR$\stopwatch.c</file>
       <file>$PROJ_DIR$\stopwatch.h</file>
       <file>$PROJ_DIR$\clock.c</file>
@@ -57,7 +61,7 @@
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 19 10 3 6 14 27 1 2</file>
+          <file> 19 10 3 6 24 14 27 1 2</file>
         </tool>
       </inputs>
     </file>
@@ -145,11 +149,30 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 16 7 4 11 18 21 30 28</file>
+          <file> 16 7 4 11 18 21 34 28 30</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 16 7 4 11 18 21 30 28</file>
+          <file> 16 7 4 11 18 21 34 28</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\display_manager.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 31</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 32</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30 16 7 4 11</file>
         </tool>
       </inputs>
     </file>
@@ -168,11 +191,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 30 21</file>
+          <file> 34 21</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 30 21</file>
+          <file> 34 21</file>
         </tool>
       </inputs>
     </file>
@@ -183,6 +206,10 @@
           <name>BICOMP</name>
           <file> 25</file>
         </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 24</file>
+        </tool>
       </outputs>
       <inputs>
         <tool>
@@ -191,7 +218,7 @@
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 28</file>
+          <file> 28 21</file>
         </tool>
       </inputs>
     </file>
