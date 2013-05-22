@@ -1967,6 +1967,12 @@
     </settings>
   </configuration>
   <file>
+    <name>$PROJ_DIR$\clock.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\clock.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\LCD.c</name>
   </file>
   <file>
@@ -1974,6 +1980,12 @@
   </file>
   <file>
     <name>$PROJ_DIR$\main.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\stopwatch.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\stopwatch.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\tools.c</name>

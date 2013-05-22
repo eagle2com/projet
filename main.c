@@ -10,56 +10,18 @@
 #define CHRONO 0
 #define HEURE 1
 
-unsigned var_cc = 0,var_cs = 0, var_cm = 0;
-unsigned var_hs=0,var_hm=0,var_hh=0,var_hc = 0;
-
 unsigned lcd_timer = 0;
 const unsigned lcd_delay = 10;
 
 unsigned mode = HEURE;
-unsigned chrono_on = 1;
 
 unsigned bouton_timer = 9;
 
 
 void update_timer()
 {
-  if(chrono_on)
-    var_cc++;
-  if(var_cc >= 100)
-  {
-    var_cc = 0;
-    var_cs++;
-  }
-  if(var_cs >= 60)
-  {
-    var_cs = 0;
-    var_cm++;
-  }
-  if(var_cm >= 60)
-    var_cm = 0;
-  
-  var_hc++;
-   if(var_hc >= 100)
-  {
-    var_hc = 0;
-    var_hs++;
-  }
-  if(var_hs >= 60)
-  {
-    var_hs = 0;
-    var_hm++;
-  }
-  if(var_hm >= 60)
-  {
-    var_hm = 0;
-    var_hh++;
-  }
-  if(var_hh >= 99)
-  {
-    var_hh = 0;
-  }
-  
+  sw_tick();
+  clk_tick();
 }
 
 
@@ -80,10 +42,10 @@ __interrupt void TimerA0_ISR(void)
     switch(mode)
     {
     case CHRONO:
-       LCD_print(convert_mmsscc(var_cc,var_cs,var_cm));
+        LCD_print(sw_tostring());
       break;
     case HEURE:
-       LCD_print(convert_hhmmss(var_hs,var_hm,var_hh));
+       LCD_print(clk_tostring());
       break;
     }
   }
@@ -107,11 +69,11 @@ __interrupt void TimerA0_ISR(void)
     }
     else if(P1IFG & 0x4) //pause du chrono
     {
-      chrono_on = !chrono_on;
+      sw_toggle();
     }
     else if(P1IFG & 0x8) //ràz du chrono
     {
-      var_cc = 0,var_cs = 0, var_cm = 0;
+      sw_reset();
     }
   }
   
@@ -137,6 +99,9 @@ int main( void )
   TACTL = TASSEL_1 + MC_1;  //on veut utiliser le quartz
   
   P2OUT = 0; 	//on éteint les LEDs
+  
+  sw_reset();
+  clk_synchronize(0,0,0,0); ///use the usb communication to synchronize it corretly lately
   
   __enable_interrupt();	//autoriser le interruptions
   _BIS_SR(LPM3_bits + GIE); //on éteint presque tout pour économiser
