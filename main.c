@@ -3,9 +3,11 @@
 #include "intrinsics.h"
  #include "msp430fg4617.h"
 #include "USB.h"
+#include "tools.h"
 
 #define CHRONO 0
 #define HEURE 1
+
 
 unsigned char buffer[9] = {0};
 
@@ -20,40 +22,6 @@ unsigned chrono_on = 1;
 
 unsigned bouton_timer = 9;
 
-unsigned char itoa(unsigned i)
-{
-  return '0'+i;
-}
-
-char* convert_mmsscc()
-{ 
-  buffer[8] = 0;
-  buffer[7] = itoa(var_cc%10);
-  buffer[6] = itoa(var_cc/10);
-  buffer[5] = '.';
-  buffer[4] = itoa(var_cs%10);
-  buffer[3] = itoa(var_cs/10);
-  buffer[2] = '.';
-  buffer[1] = itoa(var_cm%10);
-  buffer[0] = itoa(var_cm/10);
- 
-  return buffer;
-}
-
-char* convert_hhmmss()
-{ 
-  buffer[8] = 0;
-  buffer[7] = itoa(var_hs%10);
-  buffer[6] = itoa(var_hs/10);
-  buffer[5] = '.';
-  buffer[4] = itoa(var_hm%10);
-  buffer[3] = itoa(var_hm/10);
-  buffer[2] = '.';
-  buffer[1] = itoa(var_hh%10);
-  buffer[0] = itoa(var_hh/10);
- 
-  return buffer;
-}
 
 void update_timer()
 {
@@ -113,10 +81,10 @@ __interrupt void TimerA0_ISR(void)
     switch(mode)
     {
     case CHRONO:
-       LCD_print(convert_mmsscc());
+       LCD_print(convert_mmsscc(var_cc,var_cs,var_cm));
       break;
     case HEURE:
-       LCD_print(convert_hhmmss());
+       LCD_print(convert_hhmmss(var_hs,var_hm,var_hh));
       break;
     }
   }
@@ -175,8 +143,4 @@ int main( void )
   _BIS_SR(LPM3_bits + GIE); //on éteint presque tout pour économiser
   
   for(;;);
-  
-  
-
-  return 0;
 }

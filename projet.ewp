@@ -1976,6 +1976,12 @@
     <name>$PROJ_DIR$\main.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\tools.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\tools.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\USB.c</name>
   </file>
   <file>
