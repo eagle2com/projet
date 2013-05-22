@@ -1979,6 +1979,12 @@
     <name>$PROJ_DIR$\display_manager.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\event_manager.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\event_manager.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\LCD.c</name>
   </file>
   <file>

@@ -9,7 +9,7 @@ static char sw_changed = 0;
 static char clk_changed = 0;
 static char display_mode = CLOCK;
 static unsigned lcd_timer = 0;
-static const lcd_delay = 25;
+static const unsigned lcd_delay = 25;
 
 void dm_init()
 {
@@ -19,6 +19,11 @@ void dm_init()
 void dm_clkChanged()
 {
   clk_changed = 1;
+}
+
+void dm_setDisplayMode(char dmode)
+{
+  display_mode = dmode;
 }
 
 void dm_swChanged()
