@@ -9,8 +9,6 @@
 #include "display_manager.h"
 #include "event_manager.h"
 
-unsigned bouton_timer = 9;
-
 #pragma vector=TIMERA0_VECTOR
 __interrupt void TimerA0_ISR(void)
 { 
@@ -27,7 +25,6 @@ __interrupt void TimerA0_ISR(void)
  __interrupt void Port1_ISR(void)
 {
   em_onPress();
-  
   P1IFG = 0; //remise à zéro des flags
 }
 
@@ -48,8 +45,6 @@ int main( void )
   TACTL = TASSEL_1 + MC_1;  //on veut utiliser le quartz
   
   dm_init();
-  
-  
   
   sw_reset();
   clk_synchronize(0,0,0,0); ///use the usb communication to synchronize it corretly lately
