@@ -54,6 +54,7 @@ char sw_toggle()
 void sw_reset()
 {
   var_cc = 0, var_cs = 0, var_cm = 0, var_ch = 0;
+  dm_swChanged();
 }
 
 char* sw_tostring()

@@ -24,6 +24,8 @@ void dm_clkChanged()
 void dm_setDisplayMode(char dmode)
 {
   display_mode = dmode;
+  clk_changed = 1;
+  sw_changed = 1;
 }
 
 void dm_swChanged()

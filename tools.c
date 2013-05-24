@@ -2,7 +2,7 @@
 
 static char buffer[9] = {0};
 
-//returs the ascii code of single digit number
+//returs the ascii code of single digit
 unsigned char itoa(unsigned i)
 {
   return '0'+i;

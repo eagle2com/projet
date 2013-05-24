@@ -17,13 +17,12 @@ static unsigned button_timer = 0;
 #define BUTTON3_SHORT 2
 #define BUTTON4_SHORT 3
 
-static const char state_machine[3][2] = 
+static const char state_machine[2][4] = 
 {
-/*STATE | BUTTON1-SHORT | BUTTON2-SHORT*/
+/*STATE | BUTTON1-SHORT | BUTTON2-SHORT | BUTTON3-SHORT | BUTTON4-SHORT*/
 /*--------------------------------------*/
-/*CLK*/  {  SW         ,        CLK},
-/*SW */  {  CLK        ,         SW},
-/*test*/  {  0          ,          0}
+/*CLK*/  {  SW         ,        CLK         ,CLK           , CLK},
+/*SW */  {  CLK        ,        SW          ,SW            , SW}
 };
 
 static char state = CLK;
