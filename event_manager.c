@@ -11,18 +11,20 @@
 static unsigned button_timer = 0;
 #define CLK 0
 #define SW 1
+#define USB 2
 
 #define BUTTON1_SHORT 0
 #define BUTTON2_SHORT 1
 #define BUTTON3_SHORT 2
 #define BUTTON4_SHORT 3
 
-static const char state_machine[2][4] = 
+static const char state_machine[3][4] = 
 {
 /*STATE | BUTTON1-SHORT | BUTTON2-SHORT | BUTTON3-SHORT | BUTTON4-SHORT*/
 /*--------------------------------------*/
 /*CLK*/  {  SW         ,        CLK         ,CLK           , CLK},
-/*SW */  {  CLK        ,        SW          ,SW            , SW}
+/*SW */  {  CLK        ,        SW          ,SW            , SW},
+/*USB*/  {  CLK        ,        USB         , USB          , USB}
 };
 
 static char state = CLK;
@@ -45,6 +47,7 @@ void em_onPress()
       break;
     case 0x8:
       button = BUTTON4_SHORT;
+      dm_displayMessage("cacaprout",500);
       break;
     }
     
@@ -79,6 +82,15 @@ void em_onPress()
       case BUTTON4_SHORT:
         break;
       }
+      break;
+    case USB:
+      char com[9] = {0};
+       while (USB_readyToRead() && USB_readyToWrite())
+      {  
+        usb_gets (com);
+        LCD_print(com);
+      }
+
       break;
     }
     state = state_machine[state][button];

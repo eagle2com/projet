@@ -11,9 +11,18 @@ static char display_mode = CLOCK;
 static unsigned lcd_timer = 0;
 static const unsigned lcd_delay = 25;
 
+static unsigned greeting_delay = 0;
+
+static unsigned message_delay = 0;
+static unsigned char state_before_message = CLOCK;
+
 void dm_init()
 {
+  P2DIR = 0xF;
+  P2OUT = 0x0;
   LCD_init();
+  LCD_print("BOUJOUR!");
+  dm_setDisplayMode(CLOCK);
 }
 
 void dm_clkChanged()
@@ -24,8 +33,16 @@ void dm_clkChanged()
 void dm_setDisplayMode(char dmode)
 {
   display_mode = dmode;
-  clk_changed = 1;
-  sw_changed = 1;
+  switch(display_mode)
+  {
+  case CLOCK:
+    P2OUT = 1;
+    clk_changed = 1;
+    break;
+  case STOPWATCH:    
+    sw_changed = 1;
+    break;
+  }
 }
 
 void dm_swChanged()
@@ -35,6 +52,18 @@ void dm_swChanged()
 
 void dm_tick()
 {
+  if(greeting_delay < 100)
+  {
+    greeting_delay++;
+    return;
+  }
+  message_delay--;
+  if(message_delay == 0)
+  {
+    display_mode = state_before_message;
+    sw_changed = 1;
+    clk_changed = 1;
+  }
   lcd_timer++;
   if(lcd_timer >= lcd_delay)
   {
@@ -46,6 +75,10 @@ void dm_tick()
         LCD_print(clk_tostring());
         clk_changed = 0;
         lcd_timer = 0;
+        /*
+        P2OUT = P2OUT << 1;
+        if((P2OUT & 0xF) == 0)
+          P2OUT = 1;*/
       }
       break;
     case STOPWATCH:
@@ -56,6 +89,18 @@ void dm_tick()
         lcd_timer = 0;
       }
       break;
-    }
+      
+    case MESSAGE:
+     
+      break;
   }
+  }
+}
+
+void dm_displayMessage(char* message, unsigned delay)
+{
+  message_delay = delay;
+  state_before_message = display_mode;
+  display_mode = MESSAGE;
+  LCD_print(message);
 }

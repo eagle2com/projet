@@ -16,6 +16,10 @@ __interrupt void TimerA0_ISR(void)
   sw_tick();    //stopwatch
   clk_tick();   //clock
   dm_tick();    //display manager
+  
+  P2OUT = 0;
+  P2OUT |= USB_isConnected();
+  P2OUT |= USB_readyToWrite()<<1;
  
  //P2OUT |= USB_isConnected();
   
@@ -43,7 +47,6 @@ int main( void )
   CCR0 = 32768/100 - 1; //freq_quartz/freqsouhaitée -> CCRO+1 = FREQQuartz/f -> f = FREQSouhaitée
   //on veut 100Hz vu que le compteur doit montrer les centièmes de seconde
   TACTL = TASSEL_1 + MC_1;  //on veut utiliser le quartz
-  
   dm_init();
   
   sw_reset();
