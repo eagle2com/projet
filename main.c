@@ -16,10 +16,6 @@ __interrupt void TimerA0_ISR(void)
   sw_tick();    //stopwatch
   clk_tick();   //clock
   dm_tick();    //display manager
-  
-  P2OUT = 0;
-  P2OUT |= USB_isConnected();
-  P2OUT |= USB_readyToWrite()<<1;
  
  //P2OUT |= USB_isConnected();
   

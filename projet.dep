@@ -6,158 +6,80 @@
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$PROJ_DIR$\Debug\Obj\LCD.r43</file>
-      <file>$PROJ_DIR$\Debug\Obj\USB.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\LCD.r43</file>
       <file>$TOOLKIT_DIR$\config\lnk430FG4617.xcl</file>
+      <file>$PROJ_DIR$\Debug\Obj\USB.pbi</file>
       <file>$TOOLKIT_DIR$\lib\dlib\dl430xsfn.r43</file>
-      <file>$PROJ_DIR$\Debug\Obj\tools.r43</file>
-      <file>$TOOLKIT_DIR$\inc\msp430fg4617.h</file>
       <file>$PROJ_DIR$\Debug\Obj\USB.r43</file>
       <file>$PROJ_DIR$\Debug\Exe\projet.ulp</file>
-      <file>$PROJ_DIR$\Debug\Obj\LCD.pbi</file>
-      <file>$TOOLKIT_DIR$\config\multiplier.xcl</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
-      <file>$TOOLKIT_DIR$\inc\in430.h</file>
-      <file>$PROJ_DIR$\USB.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\tools.pbi</file>
-      <file>$PROJ_DIR$\tools.c</file>
-      <file>$PROJ_DIR$\Debug\Exe\projet.d43</file>
-      <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\LCD.h</file>
-      <file>$PROJ_DIR$\tools.h</file>
-      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
-      <file>$PROJ_DIR$\stopwatch.c</file>
-      <file>$PROJ_DIR$\USB.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\projet.pbd</file>
-      <file>$PROJ_DIR$\stopwatch.h</file>
-      <file>$PROJ_DIR$\event_manager.c</file>
-      <file>$PROJ_DIR$\display_manager.c</file>
-      <file>$PROJ_DIR$\display_manager.h</file>
-      <file>$PROJ_DIR$\clock.c</file>
       <file>$PROJ_DIR$\clock.h</file>
+      <file>$PROJ_DIR$\display_manager.h</file>
+      <file>$PROJ_DIR$\display_manager.c</file>
+      <file>$PROJ_DIR$\event_manager.c</file>
       <file>$PROJ_DIR$\event_manager.h</file>
       <file>$PROJ_DIR$\LCD.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\display_manager.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\stopwatch.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock.r43</file>
-      <file>$PROJ_DIR$\Debug\Obj\stopwatch.r43</file>
-      <file>$PROJ_DIR$\Debug\Obj\event_manager.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\event_manager.r43</file>
+      <file>$PROJ_DIR$\LCD.h</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\stopwatch.c</file>
+      <file>$PROJ_DIR$\stopwatch.h</file>
+      <file>$PROJ_DIR$\clock.c</file>
+      <file>$PROJ_DIR$\USB.c</file>
+      <file>$TOOLKIT_DIR$\config\multiplier.xcl</file>
+      <file>$PROJ_DIR$\Debug\Obj\LCD.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\projet.pbd</file>
+      <file>$PROJ_DIR$\USB.h</file>
+      <file>$TOOLKIT_DIR$\inc\in430.h</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\tools.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\tools.pbi</file>
+      <file>$PROJ_DIR$\Debug\Exe\projet.d43</file>
+      <file>$PROJ_DIR$\tools.c</file>
+      <file>$PROJ_DIR$\tools.h</file>
       <file>$PROJ_DIR$\Debug\Obj\display_manager.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\stopwatch.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\display_manager.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\event_manager.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\stopwatch.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock.r43</file>
+      <file>$TOOLKIT_DIR$\inc\msp430fg4617.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\event_manager.pbi</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 16</file>
+          <file> 28</file>
         </tool>
         <tool>
           <name>ULP430</name>
-          <file> 8</file>
+          <file> 6</file>
         </tool>
       </outputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\tools.c</name>
+      <name>$PROJ_DIR$\display_manager.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 14</file>
+          <file> 33</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 5</file>
+          <file> 31</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 19</file>
+          <file> 8 13 24 37 23 7 16</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 19</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Debug\Exe\projet.d43</name>
-      <inputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 3 10 0 7 35 39 38 11 36 5 4</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 2</file>
-        </tool>
-        <tool>
-          <name>ICC430</name>
-          <file> 11</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 18 20 6 12 13 19 24 29 27 30</file>
-        </tool>
-        <tool>
-          <name>ICC430</name>
-          <file> 18 20 6 12 13 19 24 29 27 30</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\stopwatch.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 34</file>
-        </tool>
-        <tool>
-          <name>ICC430</name>
-          <file> 36</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 24 19 27</file>
-        </tool>
-        <tool>
-          <name>ICC430</name>
-          <file> 24 19 27</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\USB.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 1</file>
-        </tool>
-        <tool>
-          <name>ICC430</name>
-          <file> 7</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 6 12 20</file>
-        </tool>
-        <tool>
-          <name>ICC430</name>
-          <file> 6 12 20</file>
+          <file> 8 13 24 37 23 7 16</file>
         </tool>
       </inputs>
     </file>
@@ -166,53 +88,76 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 37</file>
+          <file> 39</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 38</file>
+          <file> 34</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 30 20 6 12 27 24 29</file>
+          <file> 11 24 37 23 8 16 7</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 30 20 6 12 27 24 29</file>
+          <file> 11 24 37 23 8 16 7</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\display_manager.c</name>
+      <name>$PROJ_DIR$\LCD.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 1</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37 23 24</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 37 23 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 26</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13 24 37 23 22 30 16 7 8 11</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 13 24 37 23 22 30 16 7 8 11</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\stopwatch.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
           <file> 32</file>
-        </tool>
-        <tool>
-          <name>ICC430</name>
-          <file> 39</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 27 18 20 6 12 29 24</file>
-        </tool>
-        <tool>
-          <name>ICC430</name>
-          <file> 27 18 20 6 12 29 24</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\clock.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 33</file>
         </tool>
         <tool>
           <name>ICC430</name>
@@ -222,34 +167,89 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 29 19 27</file>
+          <file> 16 30 8</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 29 19 27</file>
+          <file> 16 30 8</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\LCD.c</name>
+      <name>$PROJ_DIR$\clock.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 9</file>
+          <file> 38</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 0</file>
+          <file> 36</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 6 12 20</file>
+          <file> 7 30 8</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 6 12 20</file>
+          <file> 7 30 8</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\USB.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 5</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37 23 24</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 37 23 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\projet.d43</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 2 19 1 5 36 31 34 26 35 25 4</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\tools.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 25</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 30</file>
         </tool>
       </inputs>
     </file>

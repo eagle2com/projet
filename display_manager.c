@@ -9,7 +9,7 @@ static char sw_changed = 0;
 static char clk_changed = 0;
 static char display_mode = CLOCK;
 static unsigned lcd_timer = 0;
-static const unsigned lcd_delay = 25;
+static const unsigned lcd_delay = 5;   //in 1/100 of a second
 
 static unsigned greeting_delay = 0;
 
@@ -52,6 +52,8 @@ void dm_swChanged()
 
 void dm_tick()
 {
+  sw_changed = 1;
+  clk_changed = 1;
   if(greeting_delay < 100)
   {
     greeting_delay++;
@@ -100,7 +102,8 @@ void dm_tick()
 void dm_displayMessage(char* message, unsigned delay)
 {
   message_delay = delay;
-  state_before_message = display_mode;
+  if(display_mode != MESSAGE)
+    state_before_message = display_mode;
   display_mode = MESSAGE;
   LCD_print(message);
 }

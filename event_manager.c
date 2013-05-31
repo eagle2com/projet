@@ -29,11 +29,15 @@ static const char state_machine[3][4] =
 
 static char state = CLK;
 
+static unsigned USB_CONNECTED = 0;
+static char S_USB_ON[] = "USB_ON  ";
+static char S_USB_OFF[] = "USB_OFF ";
+
 void em_onPress()
 {
   if(button_timer >= VIBRATION_DELAY)
   {
-    char button = -1;
+    char button = 0;
     switch(P1IFG)
     {
     case 0x1:
@@ -47,7 +51,9 @@ void em_onPress()
       break;
     case 0x8:
       button = BUTTON4_SHORT;
-      dm_displayMessage("cacaprout",500);
+      dm_displayMessage("test",100);
+      if(USB_readyToWrite())
+        usb_puts("cacaprout");
       break;
     }
     
@@ -84,12 +90,6 @@ void em_onPress()
       }
       break;
     case USB:
-      char com[9] = {0};
-       while (USB_readyToRead() && USB_readyToWrite())
-      {  
-        usb_gets (com);
-        LCD_print(com);
-      }
 
       break;
     }
@@ -101,7 +101,21 @@ void em_onPress()
 
 void em_tick()
 {
+  P2OUT = USB_isConnected();
+  if(USB_isConnected() != USB_CONNECTED)
+  {
+    dm_displayMessage(USB_CONNECTED?S_USB_OFF:S_USB_ON,100);
+    if(USB_isConnected())
+    {
+      USB_init();
+      dm_displayMessage("INIT OK",100);
+    }
+  }
+  USB_CONNECTED = USB_isConnected();
+  
   button_timer++;
   if(P1IN & 0xF)
     button_timer = 0;
+  
+  //P2OUT |= USB_readyToWrite()<<1;
 }
