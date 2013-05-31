@@ -51,9 +51,19 @@ void em_onPress()
       break;
     case 0x8:
       button = BUTTON4_SHORT;
-      dm_displayMessage("test",100);
+      dm_displayMessage("SYNC",100);
       if(USB_readyToWrite())
-        usb_puts("cacaprout");
+      {
+        usb_puts("\033[2J\033[;H");
+        usb_puts("Write the correct time now: \n");
+        char usb_buffer[5] = {0};
+        while(!USB_readyToRead());
+        usb_gets(usb_buffer);
+        while(!USB_readyToWrite());
+        usb_puts("\033[2J\033[;H");
+        dm_displayMessage(usb_buffer,100);
+        clk_synchronize(usb_buffer);
+      }
       break;
     }
     
@@ -101,7 +111,6 @@ void em_onPress()
 
 void em_tick()
 {
-  P2OUT = USB_isConnected();
   if(USB_isConnected() != USB_CONNECTED)
   {
     dm_displayMessage(USB_CONNECTED?S_USB_OFF:S_USB_ON,100);

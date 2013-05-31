@@ -105,5 +105,6 @@ void dm_displayMessage(char* message, unsigned delay)
   if(display_mode != MESSAGE)
     state_before_message = display_mode;
   display_mode = MESSAGE;
+  LCD_clear();
   LCD_print(message);
 }
