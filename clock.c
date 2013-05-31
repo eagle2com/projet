@@ -9,7 +9,7 @@ void clk_tick()
 {
   var_hc++;
   //animate the leds
-  if(var_hc % 30)
+  if(var_hc % 50 == 0)
     LED = LED << 1;
   if(!(LED & 0xF))
     LED = 1;
@@ -39,7 +39,7 @@ void clk_tick()
 
 unsigned char clk_getLED()
 {
-  
+  return LED;
 }
 
 void clk_synchronize(char* clock)

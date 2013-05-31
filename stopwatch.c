@@ -4,9 +4,29 @@
 
 static unsigned var_cc = 0, var_cs = 0, var_cm = 0, var_ch = 0;
 static unsigned char running = 0;
+static unsigned char LED = 0x0;
+static unsigned ntick=0;
 
 void sw_tick()
 {
+  ntick++;
+  if(running)
+  {
+      if(ntick%12==0)
+      {
+        LED = LED << 1;
+        if(!(LED & 0xF))
+          LED = 1;
+      }
+  }
+  else
+  {
+    if(ntick % 50 == 0)
+      LED ^= 0xF;
+  }
+     
+     
+     
   if(running)
   {
     dm_swChanged();
@@ -30,6 +50,11 @@ void sw_tick()
   }
 }
 
+unsigned char sw_getLED()
+{
+  return LED;
+}
+
 void sw_start()
 {
   running = 1;
@@ -48,6 +73,12 @@ char sw_isRunning()
 char sw_toggle()
 {
   running = !running;
+  if(running)
+  {
+    LED = 0x1;
+  }
+  else
+    LED = 0xF;
   return running;
 }
 
@@ -55,6 +86,7 @@ void sw_reset()
 {
   var_cc = 0, var_cs = 0, var_cm = 0, var_ch = 0;
   dm_swChanged();
+  LED = 0x0;
 }
 
 char* sw_tostring()

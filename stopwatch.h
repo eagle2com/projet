@@ -9,7 +9,7 @@ void sw_start();
 void sw_stop();
 char sw_isRunning();
 char sw_toggle();
-
+unsigned char sw_getLED();
 
 
 

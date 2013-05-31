@@ -72,11 +72,13 @@ void dm_tick()
     switch(display_mode)
     {
     case CLOCK:
+      P2OUT = clk_getLED();
       if(clk_changed)
       {
         LCD_print(clk_tostring());
         clk_changed = 0;
         lcd_timer = 0;
+        
         /*
         P2OUT = P2OUT << 1;
         if((P2OUT & 0xF) == 0)
@@ -84,6 +86,7 @@ void dm_tick()
       }
       break;
     case STOPWATCH:
+      P2OUT = sw_getLED();
       if(sw_changed)
       {
         LCD_print(sw_tostring());
