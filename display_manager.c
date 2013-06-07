@@ -5,13 +5,9 @@
 #include "clock.h"
 #include "stopwatch.h"
 
-static char sw_changed = 0;
-static char clk_changed = 0;
 static char display_mode = CLOCK;
 static unsigned lcd_timer = 0;
 static const unsigned lcd_delay = 5;   //in 1/100 of a second
-
-static unsigned greeting_delay = 0;
 
 static unsigned message_delay = 0;
 static unsigned char state_before_message = CLOCK;
@@ -21,13 +17,9 @@ void dm_init()
   P2DIR = 0xF;
   P2OUT = 0x0;
   LCD_init();
-  LCD_print("BOUJOUR!");
+ 
   dm_setDisplayMode(CLOCK);
-}
-
-void dm_clkChanged()
-{
-  clk_changed = 1;
+  dm_displayMessage("BONJOUR",100);
 }
 
 void dm_setDisplayMode(char dmode)
@@ -37,35 +29,16 @@ void dm_setDisplayMode(char dmode)
   {
   case CLOCK:
     P2OUT = 1;
-    clk_changed = 1;
+    clk_hasChanged(1);
     break;
   case STOPWATCH:    
-    sw_changed = 1;
+    sw_hasChanged(1);
     break;
   }
-}
-
-void dm_swChanged()
-{
-  sw_changed = 1;
 }
 
 void dm_tick()
-{
-  sw_changed = 1;
-  clk_changed = 1;
-  if(greeting_delay < 100)
-  {
-    greeting_delay++;
-    return;
-  }
-  message_delay--;
-  if(message_delay == 0)
-  {
-    display_mode = state_before_message;
-    sw_changed = 1;
-    clk_changed = 1;
-  }
+{ 
   lcd_timer++;
   if(lcd_timer >= lcd_delay)
   {
@@ -73,30 +46,33 @@ void dm_tick()
     {
     case CLOCK:
       P2OUT = clk_getLED();
-      if(clk_changed)
+      if(clk_hasChanged(0))
       {
         LCD_print(clk_tostring());
-        clk_changed = 0;
+        LCD_dot(4);
+        LCD_dot(6);
         lcd_timer = 0;
-        
-        /*
-        P2OUT = P2OUT << 1;
-        if((P2OUT & 0xF) == 0)
-          P2OUT = 1;*/
       }
       break;
     case STOPWATCH:
       P2OUT = sw_getLED();
-      if(sw_changed)
+      if(sw_hasChanged(0))
       {
         LCD_print(sw_tostring());
-        sw_changed = 0;
+        LCD_dot(4);
+        LCD_dot(6);
         lcd_timer = 0;
       }
       break;
       
     case MESSAGE:
-     
+      message_delay--;
+      if(message_delay <= 0)
+      {
+        display_mode = state_before_message;
+        sw_hasChanged(1);
+        clk_hasChanged(1);
+      }
       break;
   }
   }

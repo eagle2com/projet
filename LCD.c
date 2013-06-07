@@ -1,16 +1,4 @@
-//******************************************************************************
-//
-// SCD@iai.heig-vd 04.12.07
-// LCD.c
-//
-// cible : MSP430FG4617149 sur carte de laboratoire uC MCN
-// compilé sous : IAR embedded workbench v3.42A kickstart
-//
-// BUT: gestion LCD
-// ******************************************************************************
-
-//#include "io430.h"
-#include "msp430fg4617.h"
+ #include "msp430fg4617.h"
 
 void LCD_init(void);
 void LCD_clear(void);
@@ -23,24 +11,23 @@ unsigned char cursorPos;
 // correspondance caractères-segments pour les 128 premiers caractères ASCII
 // car 0-31  et 127 pas imprimables... => enlevés
 //° = ar ascii 248
-const unsigned short int chr2seg[128] = { \
-/*  */  0,0x700E | 0x8000,0x6000| 0x8000,0x324C| 0x8000,0x7248| 0x8000,0x6242| 0x8000,0x524A| 0x8000,0x524E| 0x8000,0x7000| 0x8000,\
-/* 56*/ 0x724E| 0x8000,0x724A| 0x8000,\
-/*  8*/ 0,0,0,0,0,0,\
-/* 16*/ 0,0,0,0,0,0,0,0,\
-/* 24*/ 0,0,0,0,0,0,0,0,\
-/* 32*/ 0,0,0,0,0,0,0,\
+const unsigned short int chr2seg[95] = { \
+/*  0 0,0,0,0,0,0,0,0,\*/
+/*  8 0,0,0,0,0,0,0,0,\*/
+/* 16 0,0,0,0,0,0,0,0,\*/
+/* 24 0,0,0,0,0,0,0,0,\*/
+/* 32*/ 0,0,0,0,0,0,0,0,\
 /* 40*/ 0,0,0,0,0x8000,0x0240,0x8000,0,\
-/* 48*/ 0x700E ,0x6000,0x324C,0x7248,0x6242,0x524A,0x524E,0x7000,\
+/* 48*/ 0x700E,0x6000,0x324C,0x7248,0x6242,0x524A,0x524E,0x7000,\
 /* 56*/ 0x724E,0x724A,0,0,0,0x0248,0,0,\
 /* 64*/ 0,0x7246,0x7858,0x100E,0x7818,0x120E,0x1206,0x504E,\
 /* 72*/ 0x6246,0x1818,0x6008,0x02A6,0x000E,0x6126,0x6186,0x700E,\
 /* 80*/ 0x3246,0x708E,0x32C6,0x524A,0x1810,0x600E,0x0426/*0x6180*/,0x6486,\
 /* 88*/ 0x05A0,0x0520,0x1428,0,0,0,0,0,\
-/* 96*/ 0,0x7246,0x7858,0x100E,0x7818,0x120E,0x1206,0x504E,\
-/*104*/ 0x6246,0x1818,0x6008,0x02A6,0x000E,0x6126,0x6186,0x700E,\
-/*112*/ 0x3246,0x708E,0x32C6,0x524A,0x1810,0x600E,0x0426/*0x6180*/,0x6486,\
-/*120*/ 0x05A0,0x0520,0x1428,0,0,0,0,0
+/* 96*/ 0,0,0,0,0,0,0,0,\
+/*104*/ 0,0,0,0,0,0,0,0,\
+/*112*/ 0,0,0,0,0,0,0,0,\
+/*120*/ 0,0,0,0,0,0,0,\
 };
 
 void LCD_init(void)
@@ -59,7 +46,6 @@ void LCD_init(void)
 }
 
 //******************************************************************************
-
 void LCD_clear(void)   //efface tous les segments
 {
   unsigned char n;
@@ -69,7 +55,6 @@ void LCD_clear(void)   //efface tous les segments
 }
 
 //******************************************************************************
-
 void LCD_setCursorPos(unsigned char n)
 {
   if (n>8)
@@ -80,7 +65,6 @@ void LCD_setCursorPos(unsigned char n)
 }
 
 //******************************************************************************
-
 unsigned char LCD_getCursorPos(void)
 {
   return(cursorPos);
@@ -102,7 +86,15 @@ void LCD_print(char* str)
     if(i<=8)
     {
       regNr = 2*(cursorPos + i);
-      *((unsigned char *)(&LCDM1+regNr)) = chr2seg[str[i]] & 0x00FF;
-      *((unsigned char *)(&LCDM1+regNr+1)) = (chr2seg[str[i]]>>8) & 0x00FF;
+      *((unsigned char *)(&LCDM1+regNr)) = chr2seg[str[i]-32] & 0x00FF;
+      *((unsigned char *)(&LCDM1+regNr+1)) = (chr2seg[str[i]-32]>>8) & 0x00FF;
     }
+}
+
+//******************************************************************************
+
+void LCD_dot(char pos)
+{
+  *((unsigned char *)(&LCDM1+2*pos)) |= (0x8000 & 0x00FF);
+  *((unsigned char *)(&LCDM1+2*pos+1)) |= ((0x8000>>8) & 0x00FF);
 }

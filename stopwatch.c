@@ -6,6 +6,7 @@ static unsigned var_cc = 0, var_cs = 0, var_cm = 0, var_ch = 0;
 static unsigned char running = 0;
 static unsigned char LED = 0x0;
 static unsigned ntick=0;
+static char has_changed = 1;
 
 void sw_tick()
 {
@@ -29,7 +30,7 @@ void sw_tick()
      
   if(running)
   {
-    dm_swChanged();
+    has_changed = 1;
     var_cc++;
   }
   
@@ -85,8 +86,15 @@ char sw_toggle()
 void sw_reset()
 {
   var_cc = 0, var_cs = 0, var_cm = 0, var_ch = 0;
-  dm_swChanged();
+  has_changed = 1;
   LED = 0x0;
+}
+
+char sw_hasChanged(char c)  //do we reset the indicator after the call?
+{
+  char temp = has_changed;
+  has_changed = 1;
+  return temp;
 }
 
 char* sw_tostring()

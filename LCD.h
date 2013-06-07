@@ -16,3 +16,4 @@ extern void LCD_init(void);
 extern void LCD_setCursorPos(unsigned char n);
 extern unsigned char LCD_getCursorPos(void);
 extern void LCD_print(char* str);
+extern void LCD_dot(char pos);

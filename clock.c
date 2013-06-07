@@ -4,6 +4,7 @@
 
 static unsigned var_hs=0,var_hm=0,var_hh=0,var_hc = 0;
 static unsigned LED = 1;
+static char has_changed = 1;
 
 void clk_tick()
 {
@@ -19,7 +20,7 @@ void clk_tick()
   {
     var_hc = 0;
     var_hs++;
-    dm_clkChanged();
+    has_changed = 1;
   }
   if(var_hs >= 60)
   {
@@ -71,6 +72,13 @@ void clk_synchronize(char* clock)
   var_hm = 10*n3+n4;
   var_hs = 0;
   var_hc = 0;
+}
+
+char clk_hasChanged(char c) //the state it should have after the call, DETAIIILLZZZZZZ
+{
+  char temp = has_changed;
+  has_changed = c;
+  return temp;
 }
 
 char* clk_tostring()

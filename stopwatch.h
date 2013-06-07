@@ -10,18 +10,7 @@ void sw_stop();
 char sw_isRunning();
 char sw_toggle();
 unsigned char sw_getLED();
-
-
-
-
-
-
-
-
-
-
-
-
+char sw_hasChanged(char c);
 
 
 #endif
