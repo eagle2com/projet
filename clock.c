@@ -3,6 +3,8 @@
 #include "display_manager.h"
 
 static unsigned var_hs=0,var_hm=0,var_hh=0,var_hc = 0;
+static unsigned var_hm_temp = 0, var_hh_temp = 0;
+
 static unsigned LED = 1;
 static char has_changed = 1;
 
@@ -45,20 +47,22 @@ unsigned char clk_getLED()
 
 void clk_synchronize()
 {
-  
+  var_hh = var_hh_temp;
+  var_hm = var_hm_temp;
+  var_hs = 0;
+  var_hc = 0;
 }
 
 char clk_setTime(char* clock)
 { 
-  if(strlen(clock) < 4)
+  if(strlen(clock) < 5)
   {
-    dm_displayMessage("SYNT ERR",100);
     return CLK_ERROR_SYNTAX;
   }
   unsigned n1 = clock[0] - '0';
   unsigned n2 = clock[1] - '0';
-  unsigned n3 = clock[2] - '0';
-  unsigned n4 = clock[3] - '0';
+  unsigned n3 = clock[3] - '0';
+  unsigned n4 = clock[4] - '0';
   char err = 0;
   
   if(n1*10+n2 > 23)
@@ -69,14 +73,11 @@ char clk_setTime(char* clock)
   
   if(err)
   {
-    dm_displayMessage("VAL ERR",100);
     return CLK_ERROR_VALUE;
   }
       
-  var_hh = 10*n1+n2;
-  var_hm = 10*n3+n4;
-  var_hs = 0;
-  var_hc = 0;
+  var_hh_temp = 10*n1+n2;
+  var_hm_temp = 10*n3+n4;
   
   return CLK_ERROR_OK;
 }

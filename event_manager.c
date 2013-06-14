@@ -53,18 +53,46 @@ void em_onPress()
       button = BUTTON4_SHORT;
       if(USB_isConnected())
       {
-        dm_displayMessage("SYNC",100);
-        if(USB_readyToWrite())
+        char usb_buffer[6] = {0};
+        char SET_OK = 0;
+        while(!SET_OK)
         {
-          usb_puts("\033[2J\033[;H");
-          usb_puts("Write the correct time now: \n");
-          char usb_buffer[5] = {0};
+          dm_displayMessage("SYNC",100);
+          if(USB_readyToWrite())
+          {
+            usb_puts("\033[2J\033[;H");     //clear the terminal
+            usb_puts("Write the correct time now:(HH:MM) \n");
+            while(!USB_readyToRead());
+            usb_gets(usb_buffer);
+            while(!USB_readyToWrite());
+            usb_puts("\033[2J\033[;H");
+            dm_displayMessage(usb_buffer,100);
+            
+            char error = clk_setTime(usb_buffer);
+            if(error == CLK_ERROR_OK)
+              SET_OK = 1;
+            else if(error == CLK_ERROR_SYNTAX)
+            {
+              dm_displayMessage("SYNT ERR",100);
+            }
+            else if(error == CLK_ERROR_VALUE)
+            {
+              dm_displayMessage("VAL ERR",100);
+            }
+          }
+        }
+        //now we have to wait for the sync command: I
+        char SYNC_OK = 0;
+        while(!SYNC_OK)
+        {
+           while(!USB_readyToWrite());
+            usb_puts("now enter I when ready to synchronize");
           while(!USB_readyToRead());
           usb_gets(usb_buffer);
-          while(!USB_readyToWrite());
-          usb_puts("\033[2J\033[;H");
-          dm_displayMessage(usb_buffer,100);
-          clk_synchronize(usb_buffer);
+          if(usb_buffer[0] == 'I')
+          {
+            clk_synchronize();
+          }
         }
       }
       else

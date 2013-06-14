@@ -1,6 +1,9 @@
 // BUT:  fonctions lecture/écriture par USB
 //******************************************************************************
 
+#ifndef USB_H
+#define USB_H
+
 // renvoie vrai si l'USB est connecté
 extern unsigned char USB_isConnected(void);
 
@@ -27,3 +30,5 @@ extern char *usb_gets (char *a);
 // affichage d'une chaine de caractères sur la console USB
 // se référer à la fonction C puts
 extern int usb_puts (char *a);
+
+#endif
