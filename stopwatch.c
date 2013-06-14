@@ -2,11 +2,21 @@
 #include "tools.h"
 #include "display_manager.h"
 
+//module variables
+//*****************************************************************************
 static unsigned var_cc = 0, var_cs = 0, var_cm = 0, var_ch = 0;
 static unsigned char running = 0;
 static unsigned char LED = 0x0;
 static unsigned ntick=0;
 static char has_changed = 1;
+
+
+/*****************************************************************************
+
+
+
+
+******************************************************************************/
 
 void sw_tick()
 {
@@ -25,8 +35,6 @@ void sw_tick()
     if(ntick % 50 == 0)
       LED ^= 0xF;
   }
-     
-     
      
   if(running)
   {
@@ -51,25 +59,35 @@ void sw_tick()
   }
 }
 
+//*****************************************************************************
+
 unsigned char sw_getLED()
 {
   return LED;
 }
+
+//*****************************************************************************
 
 void sw_start()
 {
   running = 1;
 }
 
+//*****************************************************************************
+
 void sw_stop()
 {
   running = 0;
 }
 
+//*****************************************************************************
+
 char sw_isRunning()
 {
   return running;
 }
+
+//*****************************************************************************
 
 char sw_toggle()
 {
@@ -83,6 +101,8 @@ char sw_toggle()
   return running;
 }
 
+//*****************************************************************************
+
 void sw_reset()
 {
   var_cc = 0, var_cs = 0, var_cm = 0, var_ch = 0;
@@ -90,12 +110,16 @@ void sw_reset()
   LED = 0x0;
 }
 
+//*****************************************************************************
+
 char sw_hasChanged(char c)  //do we reset the indicator after the call?
 {
   char temp = has_changed;
   has_changed = 1;
   return temp;
 }
+
+//*****************************************************************************
 
 char* sw_tostring()
 {

@@ -5,6 +5,7 @@
 #include "clock.h"
 #include "stopwatch.h"
 
+
 static char display_mode = CLOCK;
 static unsigned lcd_timer = 0;
 static const unsigned lcd_delay = 5;   //in 1/100 of a second
@@ -49,6 +50,7 @@ void dm_tick()
       if(clk_hasChanged(0))
       {
         LCD_print(clk_tostring());
+        LCD_dot(2);
         LCD_dot(4);
         LCD_dot(6);
         lcd_timer = 0;
@@ -59,6 +61,7 @@ void dm_tick()
       if(sw_hasChanged(0))
       {
         LCD_print(sw_tostring());
+        LCD_dot(2);
         LCD_dot(4);
         LCD_dot(6);
         lcd_timer = 0;

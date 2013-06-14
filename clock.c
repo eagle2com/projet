@@ -43,12 +43,17 @@ unsigned char clk_getLED()
   return LED;
 }
 
-void clk_synchronize(char* clock)
+void clk_synchronize()
+{
+  
+}
+
+char clk_setTime(char* clock)
 { 
   if(strlen(clock) < 4)
   {
     dm_displayMessage("SYNT ERR",100);
-    return;
+    return CLK_ERROR_SYNTAX;
   }
   unsigned n1 = clock[0] - '0';
   unsigned n2 = clock[1] - '0';
@@ -65,13 +70,15 @@ void clk_synchronize(char* clock)
   if(err)
   {
     dm_displayMessage("VAL ERR",100);
-    return;
+    return CLK_ERROR_VALUE;
   }
       
   var_hh = 10*n1+n2;
   var_hm = 10*n3+n4;
   var_hs = 0;
   var_hc = 0;
+  
+  return CLK_ERROR_OK;
 }
 
 char clk_hasChanged(char c) //the state it should have after the call, DETAIIILLZZZZZZ
