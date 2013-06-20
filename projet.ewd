@@ -41,7 +41,7 @@
         </option>
         <option>
           <name>DynDriver</name>
-          <state>430FET</state>
+          <state>SIM430</state>
         </option>
         <option>
           <name>dDllSlave</name>
@@ -305,7 +305,7 @@
         </option>
         <option>
           <name>SimEnablePSP</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>SimPspOverrideConfig</name>

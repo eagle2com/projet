@@ -46,7 +46,6 @@ int main( void )
   dm_init();
   
   sw_reset();
-  clk_synchronize("0000"); ///use the usb communication to synchronize it corretly lately
   
   __enable_interrupt();	//autoriser le interruptions
   _BIS_SR(LPM3_bits + GIE); //on éteint presque tout pour économiser

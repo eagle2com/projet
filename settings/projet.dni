@@ -92,7 +92,7 @@ File name=
 [Aliases]
 A0=_ "C:\Users\Peter\Dropbox\HEIG\MUI\projet\LCD.c" ""
 A1=_ "C:\Users\Peter\Dropbox\HEIG\MUI\projet\USB.c" ""
-A2=_ "C:\Users\Peter\Dropbox\HEIG\MUI\projet\clock.c" ""
+A2=_ "C:\Users\Peter\Dropbox\HEIG\MUI\projet\clock.c" "C:\Users\steven\Dropbox\MUI\projet\clock.c"
 A3=_ "C:\Users\Peter\Dropbox\HEIG\MUI\projet\event_manager.c" ""
 A4=_ "C:\Users\Peter\Dropbox\HEIG\MUI\projet\main.c" ""
 Count=5

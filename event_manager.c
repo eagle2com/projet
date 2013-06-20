@@ -18,14 +18,14 @@ static unsigned button_timer = 0;
 #define BUTTON3_SHORT 2
 #define BUTTON4_SHORT 3
 
-static const char state_machine[3][4] = 
+static const char state_machine[2][4] = 
 {
 /*STATE | BUTTON1-SHORT | BUTTON2-SHORT | BUTTON3-SHORT | BUTTON4-SHORT*/
 /*--------------------------------------*/
 /*CLK*/  {  SW         ,        CLK         ,CLK           , CLK},
-/*SW */  {  CLK        ,        SW          ,SW            , SW},
-/*USB*/  {  CLK        ,        USB         , USB          , USB}
-};
+/*SW */  {  CLK        ,        SW          ,SW            , SW}};
+/*USB*/ // {  CLK        ,        USB         , USB          , USB}
+//};
 
 static char state = CLK;
 
