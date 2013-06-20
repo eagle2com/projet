@@ -8,6 +8,9 @@ static unsigned var_hm_temp = 0, var_hh_temp = 0;
 static unsigned LED = 1;
 static char has_changed = 1;
 
+/* clk_tick()
+* - increments the centiseconds and eventualy seconds, minutes and hours
+*/
 void clk_tick()
 {
   var_hc++;
@@ -39,12 +42,17 @@ void clk_tick()
     var_hh = 0;
   }
 }
-
+/* clk_getLED()
+* - returns the LED mask used by the display manager
+*/
 unsigned char clk_getLED()
 {
   return LED;
 }
 
+/* clk_synchronize()
+* - synchronizes the clock with the temporary values received from usb
+*/
 void clk_synchronize()
 {
   var_hh = var_hh_temp;
@@ -53,6 +61,11 @@ void clk_synchronize()
   var_hc = 0;
 }
 
+/* clk_setTime(clock)
+* - converts the ascii string received from the usb link into integer values
+* - checks for errors in syntax and bounds
+* - returns and error code
+*/
 char clk_setTime(char* clock)
 { 
   if(strlen(clock) < 5)
@@ -82,13 +95,21 @@ char clk_setTime(char* clock)
   return CLK_ERROR_OK;
 }
 
-char clk_hasChanged(char c) //the state it should have after the call, DETAIIILLZZZZZZ
+/* clk_hasChanged(c)
+* - did the clock value changed since the last time?
+* - c allows the user to force a refresh on the next call
+*/
+
+char clk_hasChanged(char c)
 {
   char temp = has_changed;
   has_changed = c;
   return temp;
 }
 
+/* clk_tostring()
+* - returns the current time converted into an ascii string
+*/
 char* clk_tostring()
 {
   return convert_hhmmss(var_hs, var_hm, var_hh);

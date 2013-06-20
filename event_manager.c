@@ -33,9 +33,18 @@ static unsigned USB_CONNECTED = 0;
 static char S_USB_ON[] = "USB_ON  ";
 static char S_USB_OFF[] = "USB_OFF ";
 
+/* em_onPress(void)
+* is called on every button interrupt on port1 
+* - detects which button was pressed
+* - handles transitions between different states using a state machine
+* - can be easily extended in order be able to distinguish between long and 
+*       short button presses
+* - handles the button anti-bounce, it is allowed to activate only once in the
+*       defined interval VIBRATION_DELAY ( 1/100's of a second )
+*/
 void em_onPress()
 {
-  if(button_timer >= VIBRATION_DELAY)
+  if (button_timer >= VIBRATION_DELAY)
   {
     char button = 0;
     switch(P1IFG)
@@ -143,11 +152,17 @@ void em_onPress()
   button_timer = 0;
 }
 
-
+/* em_tick(void)
+* this is the method called on every tick of the update loop
+* - displays information about usb state change
+* - handles button timer incrementation and reset
+* - calls all the other modules that are dependant on the update loop
+*/
 void em_tick()
 {
   if(USB_isConnected() != USB_CONNECTED)
   {
+    // display message about USB connectivity
     dm_displayMessage(USB_CONNECTED?S_USB_OFF:S_USB_ON,100);
     if(USB_isConnected())
     {
@@ -161,5 +176,8 @@ void em_tick()
   if(P1IN & 0xF)
     button_timer = 0;
   
-  //P2OUT |= USB_readyToWrite()<<1;
+  
+  sw_tick();    //stopwatch
+  clk_tick();   //clock
+  dm_tick();    //display manager
 }

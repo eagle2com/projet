@@ -13,12 +13,6 @@
 __interrupt void TimerA0_ISR(void)
 { 
   em_tick();    //event manager
-  sw_tick();    //stopwatch
-  clk_tick();   //clock
-  dm_tick();    //display manager
- 
- //P2OUT |= USB_isConnected();
-  
 }
 
 #pragma vector=PORT1_VECTOR

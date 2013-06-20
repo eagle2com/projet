@@ -17,6 +17,9 @@ static char has_changed = 1;
 
 
 ******************************************************************************/
+/* sw_tick()
+* - increments the centiseconds and eventualy seconds and minutes
+*/
 
 void sw_tick()
 {
@@ -61,6 +64,9 @@ void sw_tick()
 
 //*****************************************************************************
 
+/* sw_getLED()
+* - returns the LED mask used by the display manager
+*/
 unsigned char sw_getLED()
 {
   return LED;
@@ -68,27 +74,36 @@ unsigned char sw_getLED()
 
 //*****************************************************************************
 
+/* sw_start()
+* - starts the stopwatch
+*/
 void sw_start()
 {
   running = 1;
 }
 
 //*****************************************************************************
-
+/* sw_stop()
+* - stops the stopwatch
+*/
 void sw_stop()
 {
   running = 0;
 }
 
 //*****************************************************************************
-
+/* sw_isRunning()
+* - returns the state of the stopwatch
+*/
 char sw_isRunning()
 {
   return running;
 }
 
 //*****************************************************************************
-
+/* sw_toggle()
+* - toggles the state of the stopwatch
+*/
 char sw_toggle()
 {
   running = !running;
@@ -102,7 +117,9 @@ char sw_toggle()
 }
 
 //*****************************************************************************
-
+/* sw_reset()
+* - resets the time value to 0, but does not stop the stopwatch
+*/
 void sw_reset()
 {
   var_cc = 0, var_cs = 0, var_cm = 0, var_ch = 0;
@@ -111,8 +128,11 @@ void sw_reset()
 }
 
 //*****************************************************************************
-
-char sw_hasChanged(char c)  //do we reset the indicator after the call?
+/* sw_hasChanged(c)
+* - did the stopwatch value changed since the last time?
+* - c allows the user to force a refresh on the next call
+*/
+char sw_hasChanged(char c)
 {
   char temp = has_changed;
   has_changed = 1;
@@ -120,6 +140,9 @@ char sw_hasChanged(char c)  //do we reset the indicator after the call?
 }
 
 //*****************************************************************************
+/* sw_tostring()
+* - returns the current time converted into an ascii string
+*/
 
 char* sw_tostring()
 {
