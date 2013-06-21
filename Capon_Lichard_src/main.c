@@ -47,11 +47,11 @@ int main( void )
   while ((IFG1 & OFIFG));
   
   //input output configuration
-  P2DIR = 0xF;              //LEDs on output
-  P2OUT = 0;                //turn off LEDs
-  P1IES = 0;                //interrupt on positive edge
-  P1IE = 0xF;               //enable interrupts from the buttons
-  P1IFG = 0;                //reset interrupt flags
+  P2DIR = 0xF;
+  P2OUT = 0;
+  P1IES = 0;
+  P1IE = 0xF;
+  P1IFG = 0;
  
   //init mmodules
   em_init();
@@ -60,7 +60,7 @@ int main( void )
   
   __enable_interrupt();	    //globaly enable interrupts
   
-  _BIS_SR(LPM0_bits + GIE); //activate low power mode
+  _BIS_SR(LPM0_bits + GIE); //on éteint presque tout pour économiser
   
   for(;;);
 }
