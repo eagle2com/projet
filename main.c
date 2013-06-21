@@ -33,15 +33,17 @@ int main( void )
   P1IE = 0xF;
   P1IFG = 0;
 
-  TACCTL0 = CCIE;     //autoriser les interruptions du timer
-  CCR0 = 32768/100 - 1; //freq_quartz/freqsouhaitée -> CCRO+1 = FREQQuartz/f -> f = FREQSouhaitée
-  //on veut 100Hz vu que le compteur doit montrer les centièmes de seconde
-  TACTL = TASSEL_1 + MC_1;  //on veut utiliser le quartz
+  TACCTL0 = CCIE;       //enable timerA interrupts
+  CCR0 = 32768/100 - 1; // f = 32658/(TACCRO+1) -> TACCR0 = 32768/100 - 1;
+  TACTL = TASSEL_1 + MC_1;  //TimerA ACLK(32768[Hz]) in up mode
+ 
+  //init mmodules
+  em_init();
   dm_init();
-  
   sw_reset();
   
-  __enable_interrupt();	//autoriser le interruptions
+  __enable_interrupt();	    //globaly enable interrupts
+  
   _BIS_SR(LPM3_bits + GIE); //on éteint presque tout pour économiser
   
   for(;;);

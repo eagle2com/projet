@@ -1,16 +1,3 @@
-[InterruptLog]
-LogEnabled=0
-SumEnabled=0
-GraphEnabled=0
-ShowTimeLog=1
-ShowTimeSum=1
-SumSortOrder=0
-[DataLog]
-LogEnabled=0
-SumEnabled=0
-GraphEnabled=0
-ShowTimeLog=1
-ShowTimeSum=1
 [Stack]
 FillEnabled=0
 OverflowWarningsEnabled=1
@@ -21,20 +8,6 @@ UseTrigger=1
 TriggerName=main
 LimitSize=0
 ByteLimit=50
-[Breakpoints2]
-Count=0
-[Interrupts]
-Enabled=1
-[MemoryMap]
-Enabled=0
-Base=0
-UseAuto=0
-TypeViolation=1
-UnspecRange=1
-ActionState=1
-[Trace1]
-Enabled=0
-ShowSource=1
 [DebugChecksum]
 Checksum=-696541042
 [State Storage]
@@ -89,6 +62,30 @@ SP=0
 SR=0
 all registers=0
 File name=
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[DataLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+[Breakpoints2]
+Count=0
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
 [Aliases]
 A0=_ "C:\Users\Peter\Dropbox\HEIG\MUI\projet\LCD.c" ""
 A1=_ "C:\Users\Peter\Dropbox\HEIG\MUI\projet\USB.c" ""
@@ -97,3 +94,6 @@ A3=_ "C:\Users\Peter\Dropbox\HEIG\MUI\projet\event_manager.c" ""
 A4=_ "C:\Users\Peter\Dropbox\HEIG\MUI\projet\main.c" ""
 Count=5
 SuppressDialog=0
+[Trace1]
+Enabled=0
+ShowSource=1

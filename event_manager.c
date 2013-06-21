@@ -33,6 +33,16 @@ static unsigned USB_CONNECTED = 0;
 static char S_USB_ON[] = "USB_ON  ";
 static char S_USB_OFF[] = "USB_OFF ";
 
+/* em_init()
+* - initializes the module variables to default values
+*/
+void em_init()
+{
+  USB_CONNECTED = 0;
+  state = CLK;
+  button_timer = 0;
+}
+
 /* em_onPress(void)
 * is called on every button interrupt on port1 
 * - detects which button was pressed

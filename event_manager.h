@@ -5,5 +5,6 @@
 
 void em_onPress();      //callback method handling events
 void em_tick();         //a standard tick method, called on each 10[ms] "frame"
+void em_init();
 
 #endif
